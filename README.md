@@ -1,27 +1,29 @@
+<h3>Iniciar o sistema</h3>
 // Instalar as dependencias do npm
-npm install
+<strong>npm install</strong>
+<strong>npm install -g nodemon</strong>
 
 // Extensão
-thunder client
-<h1>mongodb for vscode</h1>
+<strong>thunder client</strong>
+<strong>mongodb for vscode</strong>
 
-// Criar um arquivo 
-.env
-    MONGO_CS = 'mongodb://localhost:27017' //mongodb compass local
-    MONGO_CS = 'mongodb+srv://doglaska:<db_password>@barber-cluster.jcewm.mongodb.net/?retryWrites=true&w=majority&appName=barber-cluster' //mongodb atlas
-    MONGO_DB_NAME= 'Barber'
+// Criar um arquivo <br>
+<strong>.env </strong> <br>
+<strong>MONGO_CS = 'mongodb://localhost:27017' </strong> mongodb compass local <br>
+<strong>MONGO_CS = </strong>mongodb atlas<br>
+<strong>MONGO_DB_NAME= 'Barber'</strong>Nome do Banco de dados<br>
 
-// Para rodar o localhost
-npm run dev
+<strong>npm run dev </strong> /nPara rodar o localhost <br>
 
-// Cadastrar 
-POST http://localhost:3000/auth/signup
+Cadastrar 
+POST/t <strong>http://localhost:3000/auth/signup</strong><br>
+ 
+ Visualizar
+GET/t <strong>http://localhost:3000/users</strong><br>
 
-// Visualizar
-GET http://localhost:3000
+Update
+PUT/t <strong>http://localhost:3000/users</strong>/id-user<br>
 
-// update
-PUT http://localhost:3000/login
+Delete
+DELETE/t <strong>http://localhost:3000/users</strong>/id-user<br>
 
-// Delete
-DELETE http://localhost:3000/login
