@@ -6,7 +6,7 @@ const collectionName = 'products'
 export default class ProductsDataAccess {
     async getProducts() {
         const result = await Mongo.db
-        .collectio(collectionName)
+        .collection(collectionName)
         .findOne({})
         .toArray()
 
@@ -15,7 +15,7 @@ export default class ProductsDataAccess {
 
     async getAvailableProducts() {
         const result = await Mongo.db
-        .collectio(collectionName)
+        .collection(collectionName)
         .findOne({available: true})
         .toArray()
 
