@@ -1,12 +1,23 @@
-import { useState } from "react"
-import { TextField, Button, Switch } from "@mui/material"
+import { useState, useEffect } from "react"
+import { TextField } from "@mui/material"
 import styles from './page.module.css'
 import authServices from "../../services/auth"
+import { useNavigate } from "react-router-dom"
 
 export default function Auth(){
     const [formType, setFormType] = useState('login')
     const [formData, setFormData] = useState(null)
-    const {login, signup} = authServices()
+    const {login, signup, authLoading} = authServices()
+
+    const navigate = useNavigate()
+
+    const authData = JSON.parse(localStorage.getItem('auth'))
+
+    useEffect(() => {
+        if(authData){
+            return navigate('/profile')
+        }
+    }, [authData])
 
     const handleChangeFormType = () => {
         setFormData(null)
@@ -43,9 +54,14 @@ export default function Auth(){
         }
     }
 
-    if(formType === 'login'){
-        return(
-            <div className={styles.authPageContainer}>
+    if(authLoading){
+        return (<h1>Carregando...</h1>)
+    }
+
+return(
+    <div className={styles.authPageContainer}>
+        {formType === 'login' ? (
+            <>
                 <h1>Login</h1>
                 <button onClick={handleChangeFormType}>Não tem uma conta? Clique aqui</button>
                 <form onSubmit={handleSubmitForm}>
@@ -63,50 +79,48 @@ export default function Auth(){
                         name="password"
                         onChange={handleFormDataChange}
                     />
-                    <Button type="submit">Login</Button>
-                </form>
-            </div>
-        )
-    }
+                    <button type="submit">Login</button>
+            </form>
+            </>
+        ): null}
 
-    if(formType === 'signup'){
-        return(
-            <div className={styles.authPageContainer}>
+        {formType === 'signup' ? (
+            <>
                 <h1>Signup</h1>
                 <button onClick={handleChangeFormType}>Já tem uma conta? Clique aqui</button>
                 <form onSubmit={handleSubmitForm}>
                 <TextField
-                        required
-                        label="Fullname"
-                        type="fullname"
-                        name="fullname"
-                        onChange={handleFormDataChange}
-                    />
-                    <TextField
-                        required
-                        label="Email"
-                        type="email"
-                        name="email"
-                        onChange={handleFormDataChange}
-                    />
-                    <TextField
-                        required
-                        label="Password"
-                        type="password"
-                        name="password"
-                        onChange={handleFormDataChange}
-                    />
-                    <TextField
-                        required
-                        label="Confirm password"
-                        type="password"
-                        name="confirmPassword"
-                        onChange={handleFormDataChange}
-                    />
-                    <Button type="submit">Signup</Button>
+                    required
+                    label="Fullname"
+                    type="fullname"
+                    name="fullname"
+                    onChange={handleFormDataChange}
+                />
+                <TextField
+                    required
+                    label="Email"
+                    type="email"
+                    name="email"
+                    onChange={handleFormDataChange}
+                />
+                <TextField
+                    required
+                    label="Password"
+                    type="password"
+                    name="password"
+                    onChange={handleFormDataChange}
+                />
+                <TextField
+                    required
+                    label="Confirm password"
+                    type="password"
+                    name="confirmPassword"
+                    onChange={handleFormDataChange}
+                />
+                <button type="submit">Signup</button>
                 </form>
-            </div>
-        )
-    }
-
+            </>
+        ): null}
+    </div>
+    )
 }
