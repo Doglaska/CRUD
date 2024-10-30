@@ -3,6 +3,7 @@ import { TextField } from "@mui/material"
 import styles from './page.module.css'
 import authServices from "../../services/auth"
 import { useNavigate } from "react-router-dom"
+import {LuLogIn} from "react-icons/lu"
 
 export default function Auth(){
     const [formType, setFormType] = useState('login')
@@ -79,7 +80,7 @@ return(
                         name="password"
                         onChange={handleFormDataChange}
                     />
-                    <button type="submit">Login</button>
+                    <button type="submit">Login<LuLogIn/></button>
             </form>
             </>
         ): null}
@@ -117,7 +118,7 @@ return(
                     name="confirmPassword"
                     onChange={handleFormDataChange}
                 />
-                <button type="submit">Signup</button>
+                <button type="submit">Signup<LuLogIn/></button>
                 </form>
             </>
         ): null}

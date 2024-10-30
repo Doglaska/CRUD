@@ -1,13 +1,14 @@
 .navbarContainer{
     display: flex;
     align-items: center;
-    background-color: #004643;
+    background-color: #191919;
     height: 96px;
     padding: 0.2em;
 }
 
 .logoBranco{
     width: 8em;
+    margin-top: 1em;
 }
 
 .navbarItems{
@@ -41,7 +42,7 @@
     height: 100%;
     padding: 2em;
     gap: 1em;
-    background-color: #004643;
+    background-color: #191919;
     font-size: xx-large;
 
 }

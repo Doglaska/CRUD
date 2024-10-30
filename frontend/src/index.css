@@ -2,18 +2,38 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
+    font-family: Pontano Sans;
 }
 
 #root{
     font-size: x-large;
+    background-color: #cbcbcb;
+    color: #191919;
+    min-height: 100vh;
+}
+
+main{
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: 100vh;
 }
 
 button{
+    display: flex;
+    gap: .5em;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
-    background-color: #4b4b4b;
+    background-color: #191919;
     color: aliceblue;
     border: none;
     padding: 1em;
     border-radius: .5em;
     cursor: pointer;
+    font-size: small;
+}
+
+p{
+    display: flex;
+    gap: .5em;
 }

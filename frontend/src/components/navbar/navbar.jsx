@@ -15,7 +15,7 @@ export default function Navbar(){
         <nav className= {styles.navbarContainer}>
             <div className= {styles.navbarItems}>
                 <Link to={'/'}>
-                    <img className= {styles.logoBranco} src="/logoBranco.png" alt="" />
+                    <img className= {styles.logoBranco} src="/images/logoBranco.png" alt="" />
                 </Link>
                 <div className= {styles.navbarLinksContainer}>
                     <Link to={'/'} className= {styles.navbarLink}>Home</Link>
@@ -28,7 +28,7 @@ export default function Navbar(){
 
             <div className= {styles.mobileNavbarItems}>
                 <Link to={'/'}>
-                    <img className= {styles.logoBranco} src="/logoBranco.png" alt="" />
+                    <img className= {styles.logoBranco} src="/images/logoBranco.png" alt="" />
                 </Link>
                 <div className= {styles.mobileNavbarBtns}>
                     <LuUserCircle className= {styles.navbarLink}/>
@@ -41,9 +41,9 @@ export default function Navbar(){
             onClose={handleOpenMenu}
             >
                 <div className= {styles.drawer}>
-                    <Link to={'/'} className= {styles.navbarLink}>Home</Link>
-                    <Link to={'/products'} className= {styles.navbarLink}>Products</Link>
-                    <Link to={'/profile'} className= {styles.navbarLink}>Profile</Link>
+                    <Link to={'/'} className= {styles.navbarLink} onClick={handleOpenMenu}>Home</Link>
+                    <Link to={'/products'} className= {styles.navbarLink}onClick={handleOpenMenu}>Products</Link>
+                    <Link to={'/profile'} className= {styles.navbarLink}onClick={handleOpenMenu}>Profile</Link>
                 </div>
             </Drawer>
         </nav>
