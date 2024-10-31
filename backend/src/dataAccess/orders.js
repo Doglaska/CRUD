@@ -128,7 +128,7 @@ export default class OrdersDataAccess {
 
         items.map((item) => {
             item.productId = new ObjectId(item.productId)
-            item.orderId = new ObjectId(item.orderId)
+            item.orderId = new ObjectId(newOrder.insertedId)
         })
 
         const result = await Mongo.db
@@ -151,7 +151,7 @@ export default class OrdersDataAccess {
         return result
     }
 
-    async updateOrder(ordersId, orderData) {
+    async updateOrder(orderId, orderData) {
         const result = await Mongo.db
         .collection(collectionName)
         .findOneAndUpdate(

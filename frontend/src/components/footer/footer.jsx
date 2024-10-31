@@ -13,8 +13,8 @@ export default function Footer(){
                     <Link className={styles.link} to={'/profile'}>Profile</Link>
                 </div>
             </div>
+            <hr className={styles.line}/>
             <div>
-                <hr />
                 <p>
                     &copy; 2024.
                     <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709compilado.htm" target='_blank'> LGPD</a>

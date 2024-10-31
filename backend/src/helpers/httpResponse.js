@@ -2,7 +2,7 @@ export const ok = (body) => {
     return{
         success:true,
         statusCode: 200,
-        body: body
+        body
     }
 }
 
@@ -10,7 +10,9 @@ export const notFound = () => {
     return{
         success:false,
         statusCode: 400,
-        body: 'Not found'
+        body: {
+            text: 'Not found'
+        }
     }
 }
 

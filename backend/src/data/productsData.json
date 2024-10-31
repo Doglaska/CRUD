@@ -1,0 +1,83 @@
+[
+    {
+        "name":"A",
+        "price":10.99,
+        "available":false,
+        "description":"",
+        "ingredients":["Fresh squid","Fresh peas","Tomatoes"],
+        "imgUrl":"/imgs/plates/squidStewwithPeas.png",
+        "category":"First"
+    },
+    {
+        "name":"B ",
+        "price": 8.99,
+        "available":true,
+        "description":"",
+        "ingredients":["Homemade tortellini","Chicken broth"],
+        "imgUrl":"/imgs/plates/tortellini.png",
+        "category":"First"
+    },
+    {
+        "name":"C ",
+        "price":10.99,
+        "available":true,
+        "description":"C",
+        "ingredients":["Cooked shrimp","Seasonal vegetables","Salad dressing"],
+        "imgUrl":"/imgs/plates/shrimpandVegetableSalad.png",
+        "category":"Side"
+    },
+    {
+        "name":"D",
+        "price":7.99,
+        "available":true,
+        "description":"D",
+        "ingredients":["Mixed seafood","Extra virgin olive oil"],
+        "imgUrl":"/imgs/plates/seafoodSalad.png",
+        "category":"Appetizer"
+    },
+    {
+        "name":"E",
+        "price":11.99,
+        "available":true,
+        "description":"Layers of egg pasta interspersed with a rich minced meat sauce and a fluffy béchamel sauce. Lasagna Bolognese will make you feel at home!",
+        "ingredients":["Béchamel sauce","Minced meat sauce","Egg pasta","Basil"],
+        "imgUrl":"/imgs/plates/lasagna.png",
+        "category":"First"
+    },
+    {
+        "name":"F",
+        "price":5.99,
+        "available":true,
+        "description":"Freshly baked whole grain bread, crispy on the outside and soft on the inside, perfect to enjoy with every dish!",
+        "ingredients":["Whole grain flour","Water","Yeast","Salt"],
+        "imgUrl":"/imgs/plates/bread.png",
+        "category":"Other"
+    },
+    {
+        "name":"G ",
+        "price":11.99,
+        "available":true,
+        "category":"Second",
+        "description":"G",
+        "imgUrl":"/imgs/plates/meatBalls.png",
+        "ingredients":["Ground meat","Tomato sauce","Basil", "Butter"]
+    },
+    {
+        "name":"H",
+        "price":8.99,
+        "description":"",
+        "category":"Appetizer",
+        "available":true,
+        "ingredients":["Smoked swordfish","Seared vegetables","Sesame seeds"],
+        "imgUrl":"/imgs/plates/swordfish.png"
+    },
+    {
+        "name":"I",
+        "price":16.99,
+        "available":true,
+        "description":"",
+        "ingredients":["Salmon fillet","Mixed vegetables"],
+        "imgUrl":"/imgs/plates/grilledSalmon.png",
+        "category":"Second"
+    }
+]

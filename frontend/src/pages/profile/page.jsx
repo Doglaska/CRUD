@@ -5,10 +5,11 @@ import orderServices from "../../services/order"
 import styles from './page.module.css'
 import {LuLogOut, LuTimer} from "react-icons/lu"
 import Loading from "../loading/page"
+import {Link} from "react-router-dom"
 
 export default function Profile(){
     const {logout } = authServices()
-    const {getUserOrders, orderLoading, refetchOrders} = orderServices()
+    const {getUserOrders, orderLoading, refetchOrders, ordersList} = orderServices()
     const navigate = useNavigate()
     const authData = JSON.parse(localStorage.getItem('auth'))
 
@@ -28,6 +29,8 @@ export default function Profile(){
         logout()
         return navigate('/')
     }
+    
+    console.log(ordersList)
 
     return(
         <div className={styles.pageContainer}>

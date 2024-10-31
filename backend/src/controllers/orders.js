@@ -8,9 +8,9 @@ export default class OrdersControllers {
 
     async getOrders() {
         try {
-            const products = await this.dataAccess.getOrders()
+            const orders = await this.dataAccess.getOrders()
 
-            return ok(products)
+            return ok(orders)
         } catch (error) {
             return serverError(error)
         }
@@ -18,17 +18,17 @@ export default class OrdersControllers {
 
     async getOrdersByUserId(userId) {
         try {
-            const products = await this.dataAccess.getOrdersByUserId(userId)
+            const orders = await this.dataAccess.getOrdersByUserId(userId)
 
-            return ok(products)
+            return ok(orders)
         } catch (error) {
             return serverError(error)
         }
     }
 
-    async addOrder(productData) {
+    async addOrder(orderData) {
         try {
-            const result = await this.dataAccess.addOrder(productData)
+            const result = await this.dataAccess.addOrder(orderData)
 
             return ok(result)
         } catch (error) {
@@ -36,9 +36,9 @@ export default class OrdersControllers {
         }
     }
 
-    async deleteOrder(productId) {
+    async deleteOrder(orderId) {
         try {
-            const result = await this.dataAccess.deleteOrder(productId)
+            const result = await this.dataAccess.deleteOrder(orderId)
 
             return ok(result)
         } catch (error) {
@@ -46,9 +46,9 @@ export default class OrdersControllers {
         }
     }
 
-    async updateOrder(productId, productData) {
+    async updateOrder(orderId, orderData) {
         try {
-            const result = await this.dataAccess.updateOrder(productId, productData)
+            const result = await this.dataAccess.updateOrder(orderId, orderData)
 
             return ok(result)
         } catch (error) {

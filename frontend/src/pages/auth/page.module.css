@@ -4,4 +4,24 @@
     align-items: center;
     justify-content: center;
     gap: 0.5em;
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px; /* Limita a largura do formulário */
+}
+
+.authPageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5); /* Fundo transparente */
+    z-index: 10;
+    max-width: 100% ;
 }
