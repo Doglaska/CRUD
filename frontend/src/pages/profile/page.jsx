@@ -45,7 +45,9 @@ export default function Profile(){
             <div className={styles.ordersContainer}>
                 {ordersList.map((order) => (
                     <div key={order._id} className={styles.orderContainer}>
-                        {order.pickupStatus === 'Pending' ? <p><LuTimer/>{order.pickupStatus}</p> : null}
+                            {order.pickupStatus === 'Pending' ? <p className={`${styles.pickupStatus} ${styles.pending}`}><LuTimer />{order.pickupStatus}</p> : null}
+                            {order.pickupStatus === 'Completed' ? <p className={`${styles.pickupStatus} ${styles.completed}`}><LuCheckCircle />{order.pickupStatus}</p> : null}
+                            {order.pickupStatus === 'Canceled' ? <p className={`${styles.pickupStatus} ${styles.canceled}`}><LuAlertCircle />{order.pickupStatus}</p> : null}
                         <h3>{order.pickupTime}</h3>
                         {order.orderItems.map((item) => (
                             <div key={item._id}>
@@ -59,6 +61,7 @@ export default function Profile(){
             :
             <div>
                 Lista vazia
+                <Link to={'/plates'} className={styles.platesLink}>Click here and see our specialities!</Link>
             </div>
             }
         </div>

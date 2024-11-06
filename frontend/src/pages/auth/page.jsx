@@ -59,69 +59,75 @@ export default function Auth(){
         return (<h1>Carregando...</h1>)
     }
 
-return(
-    <div className={styles.authPageContainer}>
-        {formType === 'login' ? (
-            <>
-                <h1>Login</h1>
-                <button onClick={handleChangeFormType}>Não tem uma conta? Clique aqui</button>
-                <form onSubmit={handleSubmitForm}>
-                    <TextField
-                        required
-                        label="Email"
-                        type="email"
-                        name="email"
-                        onChange={handleFormDataChange}
-                    />
-                    <TextField
-                        required
-                        label="Password"
-                        type="password"
-                        name="password"
-                        onChange={handleFormDataChange}
-                    />
-                    <button type="submit">Login<LuLogIn/></button>
-            </form>
-            </>
-        ): null}
-
-        {formType === 'signup' ? (
-            <>
-                <h1>Signup</h1>
-                <button onClick={handleChangeFormType}>Já tem uma conta? Clique aqui</button>
-                <form onSubmit={handleSubmitForm}>
-                <TextField
-                    required
-                    label="Fullname"
-                    type="fullname"
-                    name="fullname"
-                    onChange={handleFormDataChange}
-                />
-                <TextField
-                    required
-                    label="Email"
-                    type="email"
-                    name="email"
-                    onChange={handleFormDataChange}
-                />
-                <TextField
-                    required
-                    label="Password"
-                    type="password"
-                    name="password"
-                    onChange={handleFormDataChange}
-                />
-                <TextField
-                    required
-                    label="Confirm password"
-                    type="password"
-                    name="confirmPassword"
-                    onChange={handleFormDataChange}
-                />
-                <button type="submit">Signup<LuLogIn/></button>
-                </form>
-            </>
-        ): null}
-    </div>
-    )
-}
+    return (
+        <div className={styles.authPageContainer}>
+            {formType === 'login' ? (
+                <>
+                    <form onSubmit={handleSubmitForm}>
+                        <h1>Login</h1>
+                        <button onClick={handleChangeFormType}>Não tem uma conta? Clique aqui</button>
+                        <TextField
+                            required
+                            label="Email"
+                            type="email"
+                            name="email"
+                            onChange={handleFormDataChange}
+                        />
+                        <TextField
+                            required
+                            label="Password"
+                            type="password"
+                            name="password"
+                            onChange={handleFormDataChange}
+                        />
+                        <div className={styles.buttonContainer}>
+                            <button type="button" onClick={() => navigate('/')}>Voltar</button>
+                            <button type="submit">Login <LuLogIn /></button>
+                        </div>
+                    </form>
+                </>
+            ) : null}
+    
+            {formType === 'signup' ? (
+                <>
+                    <form onSubmit={handleSubmitForm}>
+                        <h1>Signup</h1>
+                        <button onClick={handleChangeFormType}>Já tem uma conta? Clique aqui</button>
+                        <TextField
+                            required
+                            label="Fullname"
+                            type="text"
+                            name="fullname"
+                            onChange={handleFormDataChange}
+                        />
+                        <TextField
+                            required
+                            label="Email"
+                            type="email"
+                            name="email"
+                            onChange={handleFormDataChange}
+                        />
+                        <TextField
+                            required
+                            label="Password"
+                            type="password"
+                            name="password"
+                            onChange={handleFormDataChange}
+                        />
+                        <TextField
+                            required
+                            label="Confirm password"
+                            type="password"
+                            name="confirmPassword"
+                            onChange={handleFormDataChange}
+                        />
+                        <div className={styles.buttonContainer}>
+                            <button type="button" onClick={() => navigate('/')}>Voltar</button>
+                            <button type="submit">Signup <LuLogIn /></button>
+                        </div>
+                    </form>
+                </>
+            ) : null}
+        </div>
+    );
+}    
