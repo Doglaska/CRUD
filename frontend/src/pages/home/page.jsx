@@ -3,7 +3,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './page.module.css';
 
 const services = [
-  { img: '/src/images/servico1.jpg', text: 'Corte de Cabelo' },
+  { img: '/src/images/corte.jpg', text: 'Corte de Cabelo' },
   { img: '/src/images/servico2.jpg', text: 'Barba' },
   { img: '/src/images/servico3.jpg', text: 'Alisamento' },
   { img: '/src/images/servico4.jpg', text: 'Coloração' },

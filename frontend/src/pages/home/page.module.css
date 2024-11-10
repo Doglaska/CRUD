@@ -141,13 +141,11 @@ html, body {
     padding: 0.5em;
   }
 }
-
 .servicesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 colunas */
   gap: 1em; /* Espaço entre os quadrados */
   padding: 2em;
-  /* Aumenta a largura do grid */
   width: 100%;
 }
 
@@ -156,8 +154,10 @@ html, body {
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
-  padding: 2em; /* Aumenta o padding dentro do quadrado */
+  padding: 0.2em; /* Ajusta o padding dentro do quadrado */
   height: 400px; /* Ajuste o tamanho total do quadrado */
+  display: flex;
+  flex-direction: column;
 }
 
 .serviceImage {
@@ -171,6 +171,8 @@ html, body {
   color: #fff;
   font-size: 1.2em; /* Aumenta o tamanho do texto */
   margin-top: 1em;
+  background: none; /* Remove o fundo do texto */
+  padding: 0 1em; /* Adiciona espaçamento horizontal ao redor do texto */
 }
 
 /* Responsividade para telas menores */
