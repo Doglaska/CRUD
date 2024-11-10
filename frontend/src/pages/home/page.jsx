@@ -1,57 +1,85 @@
-import styles from './page.module.css'
-import Corte from '../../../public/images/homepage/corte'
-import { FaMapMarkerAlt, FaFacebookSquare, FaInstagram, FaWhatsapp } from "react-icons/fa"
+import { useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import styles from './page.module.css';
 
-export default function Home(){
-    return(
-        <div className={styles.pageContainer}>
-            <section>
-                <h1>Bem vindo ao Bizumic Barber!</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis id cum quam. Quod impedit at quo! Blanditiis fugit, 
-                    sit ea voluptas magnam non autem quas pariatur quod maiores consequatur odio.
-                </p>
-            </section>
-            <section className={styles.cutSection}>
-                <div>
-                    <i><Corte/></i>
-                    <h4>Corte de cabelo</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nihil cumque vel. 
-                        Necessitatibus harum quaerat corporis dolore explicabo nisi fuga unde magnam ad molestias aspernatur distinctio perspiciatis,
-                        veniam voluptatem? Dolor.
-                    </p>
-                </div>
-                <div>
-                    <i><Corte/></i>
-                    <h4>Corte de cabelo</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nihil cumque vel. 
-                        Necessitatibus harum quaerat corporis dolore explicabo nisi fuga unde magnam ad molestias aspernatur distinctio perspiciatis,
-                        veniam voluptatem? Dolor.
-                    </p>
-                </div>
-                <div>
-                    <i><Corte/></i>
-                    <h4>Corte de cabelo</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nihil cumque vel. 
-                        Necessitatibus harum quaerat corporis dolore explicabo nisi fuga unde magnam ad molestias aspernatur distinctio perspiciatis,
-                        veniam voluptatem? Dolor.
-                    </p>
-                </div>
-            </section>
-            <section className={styles.contactSection}>
-                <h1>Lorem!</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ab ducimus quis accusamus? 
-                    Quod esse ad sapiente molestias at a illum dolores expedita, autem ipsam, 
-                    facilis voluptatum, repudiandae eligendi doloremque.
-                </p>
-                <div className={styles.socialButtonsContainer}>
-                    <button className={styles.socialButton}><FaInstagram /> Instagram</button>
-                    <button className={styles.socialButton}><FaFacebookSquare /> Facebook</button>
-                    <button className={styles.socialButton}><FaWhatsapp /> Whatsapp</button>
-                    <button className={styles.socialButton}><FaMapMarkerAlt />Location</button>
-                </div>
-            </section>
+const services = [
+  { img: '/src/images/servico1.jpg', text: 'Corte de Cabelo' },
+  { img: '/src/images/servico2.jpg', text: 'Barba' },
+  { img: '/src/images/servico3.jpg', text: 'Alisamento' },
+  { img: '/src/images/servico4.jpg', text: 'Coloração' },
+  { img: '/src/images/servico5.jpg', text: 'Tratamento' },
+  { img: '/src/images/servico6.jpg', text: 'Hidratação' }
+];
+
+const images = [
+  {
+    src: '/src/images/cadeira.webp', // Caminho para a imagem
+    text: 'Bem-vindo ao Bizumic Barber! Transforme seu estilo aqui.',
+  },
+  {
+    src: '/src/images/cabelo.jpg', // Caminho para a imagem
+    text: 'Uma das maiores referências do mercado, oferecemos mais do que cortes de cabelo, oferecemos experiência.',
+  },
+];
+
+export default function Home() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  return (
+    <div className={styles.pageContainer}>
+      {/* Container Parallax para o Banner */}
+      <div className={styles.parallaxBanner}>
+        {/* Conteúdo opcional do banner */}
+      </div>
+
+      {/* Carrossel */}
+      <div className={styles.carouselContainer}>
+        <button className={styles.carouselButton} onClick={prevSlide}>
+          <FaChevronLeft />
+        </button>
+
+        <div className={styles.carouselSlide}>
+          <div className={styles.imageTextContainer}>
+            <img
+              src={images[currentIndex].src}
+              alt="Carrossel"
+              className={styles.carouselImage}
+            />
+            <div className={styles.carouselText}>
+              <h2>{images[currentIndex].text}</h2>
+              {currentIndex === 0 && (
+                <button className={styles.agendeButton}>Agende Aqui</button>
+              )}
+            </div>
+          </div>
         </div>
-    )
+
+        <button className={styles.carouselButton} onClick={nextSlide}>
+          <FaChevronRight />
+        </button>
+      </div>
+
+      <h1>Serviços</h1>
+      <p>Esses são nossos serviços oferecidos</p>
+      {/* Seção de Serviços */}
+      <div className={styles.servicesGrid}>
+        {services.map((service, index) => (
+          <div key={index} className={styles.serviceCard}>
+            <img src={service.img} alt={service.text} className={styles.serviceImage} />
+            <p className={styles.serviceText}>{service.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }

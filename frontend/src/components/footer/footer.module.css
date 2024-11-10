@@ -1,41 +1,56 @@
-.footerContainer, .linksContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #191919;
-    color: #e5e5e5;
+/* Estilo principal do rodapé */
+.footerContainer {
+  padding: 2em 0;
+  background-color: #000000;
+  color: #808080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.linksContainer{
-    margin-bottom: .5em;
+
+/* Seções do rodapé (Horário e Contato) */
+.footerContent {
+  display: flex;
+  justify-content: center; /* Centraliza as seções */
+  align-items: flex-start; /* Alinha as seções no topo */
+  width: 80%; /* Controla a largura do conteúdo */
+  gap: 2em; /* Espaço entre as seções */
+  margin-top: 2em;
 }
 
-.footerContainer{
-    padding-bottom: .5em;
+/* Para que uma seção fique ligeiramente à direita e outra à esquerda */
+.scheduleSection {
+  margin-right: 2em; /* Pequeno deslocamento para a direita */
 }
 
-.footerContainer img{
-    width: 7em;
+.contactSection {
+  margin-left: 2em; /* Pequeno deslocamento para a esquerda */
 }
 
-.link{
-    color: #e5e5e5;
-    text-decoration: underline;
+/* Título das seções (Horário e Contato) */
+h2 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 1em; /* Espaço entre o título e os tópicos */
+  font-size: 1.2em; /* Tamanho ajustado */
 }
 
-h3{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+/* Lista de itens, para Horário e Contato */
+.scheduleList, .contactList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; /* Remove marcadores da lista */
+  text-align: left; /* Alinhamento à esquerda */
+  font-size: 1em; /* Tamanho da fonte */
 }
 
-.line{
-    width: 95%;
-    border: 1px solid #e5e5e5;
+.scheduleList li, .contactList li {
+  margin-bottom: 10px; /* Espaçamento entre os itens */
 }
 
-p{
-    font-size: medium;
-    margin-top: .5em;
+/* Destaque para os itens de lista */
+.scheduleList li strong, .contactList li strong {
+  color: #808080; /* Cor para destacar o texto em negrito */
 }

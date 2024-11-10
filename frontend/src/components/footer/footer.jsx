@@ -1,25 +1,35 @@
 import styles from './footer.module.css'
 import {Link} from 'react-router-dom'
+import { FaMapMarkerAlt, FaFacebookSquare, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
-export default function Footer(){
-    return(
-        <footer className={styles.footerContainer}>
-            <img src="/images/logoBranco.png" alt="" />
-            <div>
-                <h3>Menu</h3>
-                <div className={styles.linksContainer}>
-                    <Link className={styles.link} to={'/'}>HomePage</Link>
-                    <Link className={styles.link} to={'/products'}>Products</Link>
-                    <Link className={styles.link} to={'/profile'}>Profile</Link>
-                </div>
-            </div>
-            <hr className={styles.line}/>
-            <div>
-                <p>
-                    &copy; 2024.
-                    <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709compilado.htm" target='_blank'> LGPD</a>
-                </p>
-            </div>
-        </footer>
-    )
-}
+export default function Footer() {
+    return (
+      <footer className={styles.footerContainer}>
+    
+  
+        {/* Conteúdo do rodapé */}
+        <div className={styles.footerContent}>
+          {/* Seção de Horário de Funcionamento */}
+          <section className={styles.scheduleSection}>
+            <h2>Horário de Funcionamento</h2>
+            <ul className={styles.scheduleList}>
+              <li><strong>Segunda a Sexta:</strong> 08:00 - 20:00</li>
+              <li><strong>Sábado:</strong> 09:00 - 18:00</li>
+              <li><strong>Domingo:</strong> Fechado</li>
+            </ul>
+          </section>
+  
+          {/* Seção de Contato */}
+          <section className={styles.contactSection}>
+            <h2>Contate-nos</h2>
+            <ul className={styles.contactList}>
+              <li><strong>Instagram:</strong> <FaInstagram /> </li>
+              <li><strong>Facebook:</strong> <FaFacebookSquare /> </li>
+              <li><strong>Whatsapp:</strong> <FaWhatsapp /> </li>
+              <li><strong>Localização:</strong> <FaMapMarkerAlt /> </li>
+            </ul>
+          </section>
+        </div>
+      </footer>
+    );
+  }

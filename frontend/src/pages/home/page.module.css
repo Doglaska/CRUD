@@ -1,60 +1,187 @@
+/* Reset de margens e padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Aplicar fundo preto no html e body para cobrir toda a tela */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #191919;
+}
+
+/* Container principal */
 .pageContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2em;
-    padding: .5em;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2em;
+  width: 100%;
+  min-height: 100vh;
 }
 
-.cutSection {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2em;
-    background: #191919;
-    color: aliceblue;
-    padding: 2em;
-    border-radius: 2em;
+/* Banner Parallax */
+.parallaxBanner {
+  width: 100vw;
+  height: 480px; /* ajuste conforme necessário */
+  background-image: url('/src/images/banner.jpg'); /* caminho ajustado */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efeito Parallax */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinha o conteúdo à direita */
+  padding-right: 10%; /* Ajuste o valor conforme necessário */
+  
 }
 
-.cutSection div {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: .3em;
+
+
+/* Estilos do Carrossel */
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: none;
 }
 
-.socialButtonsContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.2em;
+.carouselSlide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.socialButton {
-    font-size: large;
-    width: 100%;
+.imageTextContainer {
+  display: flex;
+  justify-content: space-between; /* Garante o espaçamento entre a imagem e o texto */
+  align-items: center;
+  width: 100%;
 }
 
-.contactSection {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
+.carouselImage {
+  width: 780px; /* A imagem ocupa 70% da largura do carrossel */
+  height: 500px;
+  border-radius: 8px;
 }
 
-@media screen and (max-width: 1000px) {
-    .cutSection {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.carouselText {
+  display: flex;
+  flex-direction: column; /* Alinha o conteúdo na vertical */
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
 }
 
+.carouselText h2 {
+  color: #fff;
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.agendeButton {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #000000;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.agendeButton:hover {
+  background-color: #ff4500;
+}
+
+.carouselButton:focus {
+  outline: none;
+}
+
+/* Botões de Navegação (Voltar/Avançar) */
+.carouselButtonLeft {
+  position: flex;
+  left: 60%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carouselButtonRight {
+  position: flex;
+  right: 60%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Responsividade */
 @media screen and (max-width: 700px) {
-    .cutSection {
-        grid-template-columns: repeat(1, 1fr);
-    }
+  .carouselContainer {
+    flex-direction: column;
+  }
+  .carouselImage, .carouselText {
+    width: 100%;
+  }
+  .carouselText {
+    padding: 15px;
+  }
+  .carouselButton {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
 }
 
-@media screen and (min-width: 1000px) {
-    .socialButtonsContainer {
-        grid-template-columns: repeat(4, 1fr);
-    }
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+  gap: 1em; /* Espaço entre os quadrados */
+  padding: 2em;
+  /* Aumenta a largura do grid */
+  width: 100%;
+}
+
+.serviceCard {
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding: 2em; /* Aumenta o padding dentro do quadrado */
+  height: 400px; /* Ajuste o tamanho total do quadrado */
+}
+
+.serviceImage {
+  width: 100%;
+  height: 70%; /* Aumenta a altura da imagem */
+  object-fit: cover; /* A imagem ocupa o espaço disponível sem distorcer */
+  border-radius: 8px;
+}
+
+.serviceText {
+  color: #fff;
+  font-size: 1.2em; /* Aumenta o tamanho do texto */
+  margin-top: 1em;
+}
+
+/* Responsividade para telas menores */
+@media screen and (max-width: 768px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas para telas menores */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .servicesGrid {
+    grid-template-columns: 1fr; /* 1 coluna para telas ainda menores */
+  }
 }
