@@ -3,21 +3,21 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './page.module.css';
 
 const services = [
-  { img: '/src/images/corte.jpg', text: 'Corte de Cabelo' },
-  { img: '/src/images/servico2.jpg', text: 'Barba' },
-  { img: '/src/images/servico3.jpg', text: 'Alisamento' },
-  { img: '/src/images/servico4.jpg', text: 'Coloração' },
-  { img: '/src/images/servico5.jpg', text: 'Tratamento' },
-  { img: '/src/images/servico6.jpg', text: 'Hidratação' }
+  { img: '/src/images/corte.webp', title: 'Corte de Cabelo', text: 'Experimente nosso corte personalizado.' },
+  { img: '/src/images/barba.webp', title: 'Barba', text: 'O tratamento que sua barba merece, feito com navalha e produtos que hidratam os pelos do rosto.' },
+  { img: '/src/images/maquina.webp', title: 'Maquina', text: 'Cortes apenas com a máquina de cabelo, neste serviço o uso de pentes varia conforme o serviço realizado.' },
+  { img: '/src/images/escova.webp', title: 'Escova progressiva', text: 'A escova progressiva é um procedimento químico que alisa os cabelos gradativamente.' },
+  { img: '/src/images/depilacao.webp', title: 'Depilação com Cera', text: 'A depilação com cera tem vantagem de ser rápida e eficaz, tem como objetivo tirar os pelos os pelos do corpo na raiz.' },
+  { img: '/src/images/acabamento.webp', title: 'Acabamentos', text: 'O serviço de acabamento do cabelo é mais importante para seu visual final do que você imagina..' }
 ];
 
 const images = [
   {
-    src: '/src/images/cadeira.webp', // Caminho para a imagem
+    src: '/src/images/cadeira.webp',
     text: 'Bem-vindo ao Bizumic Barber! Transforme seu estilo aqui.',
   },
   {
-    src: '/src/images/cabelo.jpg', // Caminho para a imagem
+    src: '/src/images/cabelo.jpg',
     text: 'Uma das maiores referências do mercado, oferecemos mais do que cortes de cabelo, oferecemos experiência.',
   },
 ];
@@ -70,15 +70,19 @@ export default function Home() {
       </div>
 
       <h1>Serviços</h1>
-      <p>Esses são nossos serviços oferecidos</p>
+      <p>Confira nossosserviços</p>
+
       {/* Seção de Serviços */}
       <div className={styles.servicesGrid}>
-        {services.map((service, index) => (
-          <div key={index} className={styles.serviceCard}>
-            <img src={service.img} alt={service.text} className={styles.serviceImage} />
-            <p className={styles.serviceText}>{service.text}</p>
-          </div>
-        ))}
+{services.map((service, index) => (
+  <div key={index} className={styles.serviceCard}>
+    <img src={service.img} alt={service.title} className={styles.serviceImage} />
+    <div className={styles.serviceText}>
+      <h1>{service.title}</h1>
+      <p>{service.text}</p>
+    </div>
+  </div>
+))}
       </div>
     </div>
   );
