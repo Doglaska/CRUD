@@ -25,6 +25,7 @@ const pages = createBrowserRouter([
             { path: '/auth', element: <Auth /> },
             { path: '/user', element: <User /> },
             { path: '/agendamento', element: <Agendamento/>},
+
         ],
     },
 ]);

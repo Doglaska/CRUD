@@ -1,63 +1,129 @@
 // Agendamento.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './agendamento.css';
 
-function Agendamento() {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [horarios, setHorarios] = useState([]);
-  const [selectedHorario, setSelectedHorario] = useState(null);
-  const [barbeiros, setBarbeiros] = useState([]);
-  const [selectedBarbeiro, setSelectedBarbeiro] = useState(null);
+const Agendamento = () => {
+  const [step, setStep] = useState(1);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedHorario, setSelectedHorario] = useState('');
+  const [selectedBarbeiro, setSelectedBarbeiro] = useState('');
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
 
-  useEffect(() => {
-    if (selectedDate) {
-      // Buscar horários para o dia selecionado
-      fetch(`/api/horarios/${selectedDate}`)
-        .then(response => response.json())
-        .then(data => setHorarios(data));
+  const barbeiros = ['Barbeiro 1', 'Barbeiro 2', 'Barbeiro 3'];
+
+  // Definir horários para dias úteis e sábado
+  const horariosSemana = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+  const horariosSabado = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+
+  // Atualizar horários disponíveis com base no dia selecionado
+  const handleDateChange = (e) => {
+    const date = new Date(e.target.value);
+    setSelectedDate(e.target.value);
+
+    const dayOfWeek = date.getUTCDay();
+
+    if (dayOfWeek === 0) {
+      setHorariosDisponiveis([]); // Domingo: sem horários
+      alert('A barbearia está fechada aos domingos. Selecione outro dia.');
+    } else if (dayOfWeek === 6) {
+      setHorariosDisponiveis(horariosSabado); // Sábado: horários reduzidos
+    } else {
+      setHorariosDisponiveis(horariosSemana); // Segunda a sexta: horários completos
     }
-  }, [selectedDate]);
+  };
+
+  const handleNextStep = () => setStep((prev) => prev + 1);
+  const handlePreviousStep = () => setStep((prev) => prev - 1);
 
   return (
-    <div>
-      <h2>Escolha o dia do seu agendamento</h2>
-      <input
-        type="date"
-        onChange={(e) => setSelectedDate(e.target.value)}
-      />
+    <div className="agendamento-page">
+      <h2>Agendamento</h2>
 
-      {selectedDate && horarios.length > 0 && (
-        <div>
-          <h2>Escolha o horário</h2>
-          {horarios.map((hora, index) => (
-            <button
-              key={index}
-              onClick={() => setSelectedHorario(hora)}
-              className={`horario ${selectedHorario === hora ? 'selected' : ''}`}
-            >
-              {hora}
-            </button>
-          ))}
+      {step === 1 && (
+        <div className="step-container">
+          <label>
+            Data:
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={handleDateChange}
+            />
+          </label>
+          <button
+            onClick={handleNextStep}
+            disabled={!selectedDate || horariosDisponiveis.length === 0}
+            className="confirm-btn"
+          >
+            Confirmar Data
+          </button>
         </div>
       )}
 
-      {selectedHorario && (
-        <div>
-          <h2>Escolha seu barbeiro</h2>
-          {barbeiros.map((barbeiro, index) => (
-            <button
-              key={index}
-              onClick={() => setSelectedBarbeiro(barbeiro)}
-              className={`barbeiro ${selectedBarbeiro === barbeiro ? 'selected' : ''}`}
-            >
-              {barbeiro}
-            </button>
-          ))}
+      {step === 2 && (
+        <div className="step-container">
+          <h3>Escolha um Horário</h3>
+          <div className="horarios-container">
+            {horariosDisponiveis.map((hora, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`horario ${selectedHorario === hora ? 'selected' : ''}`}
+                onClick={() => setSelectedHorario(hora)}
+              >
+                {hora}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={handlePreviousStep}
+            className="back-btn"
+          >
+            Voltar
+          </button>
+          <button
+            onClick={handleNextStep}
+            disabled={!selectedHorario}
+            className="confirm-btn"
+          >
+            Confirmar Horário
+          </button>
         </div>
       )}
 
-      {selectedBarbeiro && (
-        <div>
-          <h3>Agendamento Confirmado</h3>
+      {step === 3 && (
+        <div className="step-container">
+          <h3>Escolha um Barbeiro</h3>
+          <div className="barbeiros-container">
+            {barbeiros.map((barbeiro, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`barbeiro ${selectedBarbeiro === barbeiro ? 'selected' : ''}`}
+                onClick={() => setSelectedBarbeiro(barbeiro)}
+              >
+                {barbeiro}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={handlePreviousStep}
+            className="back-btn"
+          >
+            Voltar
+          </button>
+          <button
+            onClick={handleNextStep}
+            disabled={!selectedBarbeiro}
+            className="confirm-btn"
+          >
+            Confirmar Barbeiro
+          </button>
+        </div>
+      )}
+
+      {step === 4 && (
+        <div className="step-container confirmacao">
+          <h3>Agendamento Concluído!</h3>
           <p>Data: {selectedDate}</p>
           <p>Horário: {selectedHorario}</p>
           <p>Barbeiro: {selectedBarbeiro}</p>
@@ -65,6 +131,6 @@ function Agendamento() {
       )}
     </div>
   );
-}
+};
 
 export default Agendamento;

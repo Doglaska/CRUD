@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './page.module.css';
 
@@ -18,7 +19,7 @@ const images = [
   },
   {
     src: '/src/images/equipe.jfif',
-    text: 'Conheça os nossos prfissionais.',
+    text: 'Conheça os nossos profissionais.',
   },
   {
     src: '/src/images/cabelo.jpg',
@@ -28,6 +29,7 @@ const images = [
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -39,6 +41,11 @@ export default function Home() {
     );
   };
 
+  const handleAgendeClick = () => {
+    navigate('/agendamento');
+    window.scrollTo(0, 0); // Garante que a página carregue no topo
+  };
+  
   return (
     <div className={styles.pageContainer}>
       {/* Container Parallax para o Banner */}
@@ -62,7 +69,7 @@ export default function Home() {
             <div className={styles.carouselText}>
               <h2>{images[currentIndex].text}</h2>
               {currentIndex === 0 && (
-                <button className={styles.agendeButton}>Agende Aqui</button>
+                <button className={styles.agendeButton} onClick={handleAgendeClick}>Agende Aqui</button> 
               )}
             </div>
           </div>
@@ -74,19 +81,19 @@ export default function Home() {
       </div>
 
       <h1>Serviços</h1>
-      <p>Confira nossosserviços</p>
+      <p>Confira nossos serviços</p>
 
       {/* Seção de Serviços */}
       <div className={styles.servicesGrid}>
-{services.map((service, index) => (
-  <div key={index} className={styles.serviceCard}>
-    <img src={service.img} alt={service.title} className={styles.serviceImage} />
-    <div className={styles.serviceText}>
-      <h1>{service.title}</h1>
-      <p>{service.text}</p>
-    </div>
-  </div>
-))}
+        {services.map((service, index) => (
+          <div key={index} className={styles.serviceCard}>
+            <img src={service.img} alt={service.title} className={styles.serviceImage} />
+            <div className={styles.serviceText}>
+              <h1>{service.title}</h1>
+              <p>{service.text}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
