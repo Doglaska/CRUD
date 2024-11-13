@@ -17,6 +17,10 @@ const images = [
     text: 'Bem-vindo ao Bizumic Barber! Transforme seu estilo aqui.',
   },
   {
+    src: '/src/images/equipe.jfif',
+    text: 'Conheça os nossos prfissionais.',
+  },
+  {
     src: '/src/images/cabelo.jpg',
     text: 'Uma das maiores referências do mercado, oferecemos mais do que cortes de cabelo, oferecemos experiência.',
   },

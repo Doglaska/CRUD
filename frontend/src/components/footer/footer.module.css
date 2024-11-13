@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-top: 1.3px solid white; /* Borda branca */
 }
 
 
@@ -17,7 +18,7 @@
   align-items: flex-start; /* Alinha as seções no topo */
   width: 80%; /* Controla a largura do conteúdo */
   gap: 2em; /* Espaço entre as seções */
-  margin-top: 2em;
+  margin-top: 0.1em;
 }
 
 /* Para que uma seção fique ligeiramente à direita e outra à esquerda */

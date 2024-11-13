@@ -1,39 +1,26 @@
-// UserPage.jsx
+// user.jsx
 import React, { useState } from "react";
-import './page.css';  // Importando o CSS como módulo
+import './page.css';
+
 const UserPage = () => {
   const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    telefone: "",
-    dataNascimento: "",
+    nome: "Nome do Usuário",
+    email: "email@exemplo.com",
+    telefone: "(11) 99999-9999",
+    dataNascimento: "2000-01-01",
   });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Dados do usuário:", formData);
-    // Aqui você pode adicionar a lógica para enviar os dados, se necessário.
-  };
 
   return (
     <div className="user-page">
       <h2>Informações do Usuário</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>
           Nome:
           <input
             type="text"
             name="nome"
             value={formData.nome}
-            onChange={handleChange}
-            required
+            readOnly
           />
         </label>
         
@@ -43,8 +30,7 @@ const UserPage = () => {
             type="email"
             name="email"
             value={formData.email}
-            onChange={handleChange}
-            required
+            readOnly
           />
         </label>
         
@@ -54,8 +40,7 @@ const UserPage = () => {
             type="tel"
             name="telefone"
             value={formData.telefone}
-            onChange={handleChange}
-            required
+            readOnly
           />
         </label>
         
@@ -65,12 +50,9 @@ const UserPage = () => {
             type="date"
             name="dataNascimento"
             value={formData.dataNascimento}
-            onChange={handleChange}
-            required
+            readOnly
           />
         </label>
-        
-        <button type="submit">Salvar</button>
       </form>
     </div>
   );

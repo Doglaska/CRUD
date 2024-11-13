@@ -11,6 +11,8 @@ import Profile from './pages/profile/page.jsx';
 import Auth from './pages/auth/page.jsx';
 import User from './pages/user/page.jsx'; // Verifique se o caminho e o nome do arquivo estão corretos
 
+import Agendamento from './pages/agendamento/page.jsx';
+
 const pages = createBrowserRouter([
     {
         path: '/',
@@ -21,7 +23,8 @@ const pages = createBrowserRouter([
             { path: '/professional', element: <Professional /> },
             { path: '/profile', element: <Profile /> },
             { path: '/auth', element: <Auth /> },
-            { path: '/user', element: <User /> }, // Caminho da rota está correto
+            { path: '/user', element: <User /> },
+            { path: '/agendamento', element: <Agendamento/>},
         ],
     },
 ]);

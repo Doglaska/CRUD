@@ -7,7 +7,7 @@
 }
 
 .user-page h2 {
-  color: #333;
+  color: #ffffff;
 }
 
 form {
@@ -15,11 +15,14 @@ form {
   flex-direction: column;
   max-width: 400px;
   width: 100%;
+
 }
 
 label {
   margin-bottom: 15px;
   color: #555;
+    display: flex;
+    gap: 0.2em;
 }
 
 input {
