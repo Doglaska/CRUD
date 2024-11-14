@@ -8,19 +8,15 @@ const Agendamento = () => {
   const [selectedBarbeiro, setSelectedBarbeiro] = useState('');
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
 
- 
-const barbeiros = [
-  { name: 'Carlos Silva', image: '/src/images/carlos.avif' },
-  { name: 'Nelson Souza', image: '/src/images/nelson.avif' },
-  { name: 'Lucas Santos', image: '/src/images/lucas.avif' }
-];
+  const barbeiros = [
+    { name: 'Carlos Silva', image: '/src/images/carlos.avif' },
+    { name: 'Nelson Souza', image: '/src/images/nelson.avif' },
+    { name: 'Lucas Santos', image: '/src/images/lucas.avif' }
+  ];
 
-
-  // Definir horários para dias úteis e sábado
   const horariosSemana = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
   const horariosSabado = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
 
-  // Atualizar horários disponíveis com base no dia selecionado
   const handleDateChange = (e) => {
     const date = new Date(e.target.value);
     setSelectedDate(e.target.value);
@@ -28,12 +24,12 @@ const barbeiros = [
     const dayOfWeek = date.getUTCDay();
 
     if (dayOfWeek === 0) {
-      setHorariosDisponiveis([]); // Domingo: sem horários
+      setHorariosDisponiveis([]);
       alert('A barbearia está fechada aos domingos. Selecione outro dia.');
     } else if (dayOfWeek === 6) {
-      setHorariosDisponiveis(horariosSabado); // Sábado: horários reduzidos
+      setHorariosDisponiveis(horariosSabado);
     } else {
-      setHorariosDisponiveis(horariosSemana); // Segunda a sexta: horários completos
+      setHorariosDisponiveis(horariosSemana);
     }
   };
 
@@ -42,102 +38,98 @@ const barbeiros = [
 
   return (
     <div className="agendamento-page">
-      <h2>Agendamento</h2>
+      <div className="agendamento-container">
+        <h2>Agendamento</h2>
 
-      {step === 1 && (
-        <div className="step-container">
-          <label>
-            Data:
-            <input
-              type="date"
-              value={selectedDate}
-              onChange={handleDateChange}
-            />
-          </label>
-          <button
-            onClick={handleNextStep}
-            disabled={!selectedDate || horariosDisponiveis.length === 0}
-            className="confirm-btn"
-          >
-            Confirmar Data
-          </button>
-        </div>
-      )}
-
-      {step === 2 && (
-        <div className="step-container">
-          <h3>Escolha um Horário</h3>
-          <div className="horarios-container">
-            {horariosDisponiveis.map((hora, index) => (
-              <button
-                key={index}
-                type="button"
-                className={`horario ${selectedHorario === hora ? 'selected' : ''}`}
-                onClick={() => setSelectedHorario(hora)}
-              >
-                {hora}
-              </button>
-            ))}
+        {step === 1 && (
+          <div className="step-container">
+            <label>
+              Data:
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={handleDateChange}
+              />
+            </label>
+            <button
+              onClick={handleNextStep}
+              disabled={!selectedDate || horariosDisponiveis.length === 0}
+              className="confirm-btn"
+            >
+              Confirmar Data
+            </button>
           </div>
-          <button
-            onClick={handlePreviousStep}
-            className="back-btn"
-          >
-            Voltar
-          </button>
-          <button
-            onClick={handleNextStep}
-            disabled={!selectedHorario}
-            className="confirm-btn"
-          >
-            Confirmar Horário
-          </button>
-        </div>
-      )}
+        )}
 
-      {step === 3 && (
-        <div className="step-container">
-          <h3>Escolha um Barbeiro</h3>
-          <div className="barbeiros-container">
-            {barbeiros.map((barbeiro, index) => (
-              <div
-                key={index}
-                className={`barbeiro ${selectedBarbeiro === barbeiro.name ? 'selected' : ''}`}
-                onClick={() => setSelectedBarbeiro(barbeiro.name)}
-              >
-                <img
-                  src={barbeiro.image}
-                  alt={barbeiro.name}
-                  className="barbeiro-image"
-                />
-                <p>{barbeiro.name}</p>
-              </div>
-            ))}
+        {step === 2 && (
+          <div className="step-container">
+            <h3>Escolha um Horário</h3>
+            <div className="horarios-container">
+              {horariosDisponiveis.map((hora, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={`horario ${selectedHorario === hora ? 'selected' : ''}`}
+                  onClick={() => setSelectedHorario(hora)}
+                >
+                  {hora}
+                </button>
+              ))}
+            </div>
+            <button onClick={handlePreviousStep} className="back-btn">
+              Voltar
+            </button>
+            <button
+              onClick={handleNextStep}
+              disabled={!selectedHorario}
+              className="confirm-btn"
+            >
+              Confirmar Horário
+            </button>
           </div>
-          <button
-            onClick={handlePreviousStep}
-            className="back-btn"
-          >
-            Voltar
-          </button>
-          <button
-            onClick={handleNextStep}
-            disabled={!selectedBarbeiro}
-            className="confirm-btn"
-          >
-            Confirmar Barbeiro
-          </button>
-        </div>
-      )}
+        )}
 
-      {step === 4 && (
-        <div className="step-container confirmacao">
-          <h3>Agendamento Concluído!</h3>
-          <p>Data: {selectedDate}</p>
-          <p>Horário: {selectedHorario}</p>
-          <p>Barbeiro: {selectedBarbeiro}</p>
-        </div>
-      )}
+        {step === 3 && (
+          <div className="step-container">
+            <h3>Escolha um Barbeiro</h3>
+            <div className="barbeiros-container">
+              {barbeiros.map((barbeiro, index) => (
+                <div
+                  key={index}
+                  className={`barbeiro ${selectedBarbeiro === barbeiro.name ? 'selected' : ''}`}
+                  onClick={() => setSelectedBarbeiro(barbeiro.name)}
+                >
+                  <img
+                    src={barbeiro.image}
+                    alt={barbeiro.name}
+                    className="barbeiro-image"
+                  />
+                  <p>{barbeiro.name}</p>
+                </div>
+              ))}
+            </div>
+            <button onClick={handlePreviousStep} className="back-btn">
+              Voltar
+            </button>
+            <button
+              onClick={handleNextStep}
+              disabled={!selectedBarbeiro}
+              className="confirm-btn"
+            >
+              Confirmar Barbeiro
+            </button>
+          </div>
+        )}
+
+        {step === 4 && (
+          <div className="step-container confirmacao">
+            <h3>Agendamento Concluído!</h3>
+            <p>Data: {selectedDate}</p>
+            <p>Horário: {selectedHorario}</p>
+            <p>Barbeiro: {selectedBarbeiro}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
