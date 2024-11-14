@@ -61,7 +61,7 @@ export default function Profile(){
             :
             <div>
                 Lista vazia
-                <Link to={'/plates'} className={styles.platesLink}>Click here and see our specialities!</Link>
+                <Link to={'/products'} className={styles.productsLink}>Click here and see our specialities!</Link>
             </div>
             }
         </div>
