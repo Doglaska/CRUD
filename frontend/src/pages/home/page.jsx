@@ -26,6 +26,10 @@ const images = [
     text: 'Uma das maiores referências do mercado, oferecemos mais do que cortes de cabelo, oferecemos experiência.',
   },
 ];
+const handleProfissionaisClick = () => {
+  navigate('/profissionais');
+  window.scrollTo(0, 0); // Garante que a página carregue no topo
+};
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,15 +49,16 @@ export default function Home() {
     navigate('/agendamento');
     window.scrollTo(0, 0); // Garante que a página carregue no topo
   };
-  
+
+  const handleProfissionaisClick = () => {
+    navigate('/profissional');
+    window.scrollTo(0, 0); // Garante que a página carregue no topo
+  };
+
   return (
     <div className={styles.pageContainer}>
-      {/* Container Parallax para o Banner */}
-      <div className={styles.parallaxBanner}>
-        {/* Conteúdo opcional do banner */}
-      </div>
+      <div className={styles.parallaxBanner}></div>
 
-      {/* Carrossel */}
       <div className={styles.carouselContainer}>
         <button className={styles.carouselButton} onClick={prevSlide}>
           <FaChevronLeft />
@@ -69,7 +74,14 @@ export default function Home() {
             <div className={styles.carouselText}>
               <h2>{images[currentIndex].text}</h2>
               {currentIndex === 0 && (
-                <button className={styles.agendeButton} onClick={handleAgendeClick}>Agende Aqui</button> 
+                <button className={styles.agendeButton} onClick={handleAgendeClick}>
+                  Agende Aqui
+                </button>
+              )}
+              {currentIndex === 1 && (
+                <button className={styles.agendeButton} onClick={handleProfissionaisClick}>
+                  Conheça Aqui
+                </button>
               )}
             </div>
           </div>
@@ -83,7 +95,6 @@ export default function Home() {
       <h1>Serviços</h1>
       <p>Confira nossos serviços</p>
 
-      {/* Seção de Serviços */}
       <div className={styles.servicesGrid}>
         {services.map((service, index) => (
           <div key={index} className={styles.serviceCard}>

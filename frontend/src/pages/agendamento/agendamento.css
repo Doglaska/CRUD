@@ -1,117 +1,98 @@
-/* agendamento.css */
-
 .agendamento-page {
   font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: 0 auto;
   padding: 20px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2rem;
-  color: #ffffff;
-  margin-bottom: 20px;
 }
 
 .step-container {
   margin: 20px 0;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
 }
 
-label,
-h3 {
-  font-size: 1.1rem;
-  color: #000; /* Define a cor do texto como preto */
-}
-
-input[type="date"] {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.horarios-container,
-.barbeiros-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.horario,
-.barbeiro {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: #e0e0e0;
-  color: #000; /* Define a cor do texto como preto */
-}
-
-.horario:hover,
-.barbeiro:hover {
-  background-color: #d0d0d0;
-}
-
-.selected {
-  background-color: #007BFF;
-  color: white;
-  border-color: #0056b3;
-}
-
-.confirm-btn,
-.back-btn {
-  margin: 10px 5px;
+button {
   padding: 10px 20px;
-  font-size: 1rem;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .confirm-btn {
-  background-color: #28a745;
+  background-color: #4caf50;
+  color: white;
+  border: none;
 }
 
-.confirm-btn:hover {
-  background-color: #218838;
+.confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .back-btn {
-  background-color: #6c757d;
+  background-color: #f44336;
+  color: white;
+  border: none;
 }
 
-.back-btn:hover {
-  background-color: #5a6268;
+.horarios-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.horario {
+  background-color: #ddd;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.horario.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.barbeiros-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.barbeiro {
+  background-color: #222;
+  border: none;
+  padding: 15px;
+  width: 150px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.barbeiro:hover {
+  transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+.barbeiro.selected {
+  border: 2px solid #ff4500; /* Destacar o barbeiro selecionado */
+}
+
+.barbeiro-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.barbeiro p {
+  color: #fff;
+  font-size: 1em;
 }
 
 .confirmacao {
-  padding: 20px;
-  background-color: #e6f7e6;
-  border: 1px solid #c3e6cb;
-  border-radius: 8px;
-}
-
-.confirmacao h3 {
-  color: #28a745;
+  text-align: center;
 }
 
 .confirmacao p {
-  font-size: 1.1rem;
-  color: #555;
+  font-size: 1.2em;
 }
-

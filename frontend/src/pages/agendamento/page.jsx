@@ -1,4 +1,3 @@
-// Agendamento.jsx
 import React, { useState } from 'react';
 import './agendamento.css';
 
@@ -9,7 +8,13 @@ const Agendamento = () => {
   const [selectedBarbeiro, setSelectedBarbeiro] = useState('');
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
 
-  const barbeiros = ['Barbeiro 1', 'Barbeiro 2', 'Barbeiro 3'];
+ 
+const barbeiros = [
+  { name: 'Carlos Silva', image: '/src/images/carlos.avif' },
+  { name: 'Nelson Souza', image: '/src/images/nelson.avif' },
+  { name: 'Lucas Santos', image: '/src/images/lucas.avif' }
+];
+
 
   // Definir horários para dias úteis e sábado
   const horariosSemana = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
@@ -95,14 +100,18 @@ const Agendamento = () => {
           <h3>Escolha um Barbeiro</h3>
           <div className="barbeiros-container">
             {barbeiros.map((barbeiro, index) => (
-              <button
+              <div
                 key={index}
-                type="button"
-                className={`barbeiro ${selectedBarbeiro === barbeiro ? 'selected' : ''}`}
-                onClick={() => setSelectedBarbeiro(barbeiro)}
+                className={`barbeiro ${selectedBarbeiro === barbeiro.name ? 'selected' : ''}`}
+                onClick={() => setSelectedBarbeiro(barbeiro.name)}
               >
-                {barbeiro}
-              </button>
+                <img
+                  src={barbeiro.image}
+                  alt={barbeiro.name}
+                  className="barbeiro-image"
+                />
+                <p>{barbeiro.name}</p>
+              </div>
             ))}
           </div>
           <button

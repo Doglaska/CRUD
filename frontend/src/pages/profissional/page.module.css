@@ -1,0 +1,67 @@
+/* profissionais.module.css */
+
+.pageContainer {
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2em;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  h1, p {
+    text-align: center;
+  }
+  
+  .profissionaisGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Três colunas */
+    gap: 2em; /* Espaço entre os quadrados */
+    padding: 2em;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .profissionalCard {
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+  }
+  
+  .profissionalImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .profissionalText {
+    margin-top: 1em;
+    color: #fff;
+  }
+  
+  .profissionalText h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  .profissionalText p {
+    font-size: 0.9em;
+    color: #ddd;
+  }
+  
+  /* Responsividade */
+  @media screen and (max-width: 768px) {
+    .profissionaisGrid {
+      grid-template-columns: 1fr; /* Uma coluna para telas menores */
+    }
+  }
+  
