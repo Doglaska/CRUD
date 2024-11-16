@@ -1,6 +1,18 @@
 .agendamento-page {
   font-family: Arial, sans-serif;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.agendamento-container {
+  background-color: #000000; /* Fundo mais claro */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  max-width: 600px;
+  width: 100%;
+  text-align: center; /* Centralizar o conteúdo */
 }
 
 .step-container {
@@ -34,6 +46,7 @@ button {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center; /* Centralizar os horários */
 }
 
 .horario {
@@ -69,11 +82,11 @@ button {
 }
 
 .barbeiro:hover {
-  transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+  transform: scale(1.05);
 }
 
 .barbeiro.selected {
-  border: 2px solid #ff4500; /* Destacar o barbeiro selecionado */
+  border: 2px solid #ff4500;
 }
 
 .barbeiro-image {
