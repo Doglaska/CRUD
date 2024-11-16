@@ -1,28 +1,27 @@
-import productServices from "../../services/products"
-import { useEffect, useState } from "react"
-import Loading from "../loading/page"
-import ProductCard from "../../components/productCard/productCard"
-import styles from './page.module.css'
+import productsServices from "../../services/products";
+import { useEffect } from "react";
+import Loading from "../loading/page";
+import styles from './page.module.css';
 
-export default function Products(){
-    
-    const {getAvailableProducts, productLoading, productsList,  refetchProducts} = productServices()
+export default function Products() {
+    const { getAvailableProducts, productsLoading, productsList, refetchProducts } = productsServices();
 
     useEffect(() => {
-        if(refetchProducts) {
-            getAvailableProducts()
+        if (refetchProducts) {
+            getAvailableProducts();
         }
-    }, [refetchProducts])
+    }, [refetchProducts]);
 
-    if (productLoading){
-        return(<Loading/>)
+    if (productsLoading) {
+        return <Loading />;
     }
 
-    console.log(productsList)
+    console.log(productsList);
 
-    return(
-
+    return (
+        <div>
             <h1>Products</h1>
-
-    )
+            {/* Renderize os produtos aqui */}
+        </div>
+    );
 }

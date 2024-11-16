@@ -148,6 +148,11 @@ export default class OrdersDataAccess {
         .collection(collectionName)
         .findOneAndDelete({_id: new ObjectId(orderId)})
 
+        const result = {
+            itemsToDelete,
+            orderToDelete
+        }
+        
         return result
     }
 

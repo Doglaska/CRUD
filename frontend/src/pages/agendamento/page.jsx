@@ -8,19 +8,15 @@ const Agendamento = () => {
   const [selectedBarbeiro, setSelectedBarbeiro] = useState('');
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
 
- 
-const barbeiros = [
-  { name: 'Carlos Silva', image: '/src/images/carlos.avif' },
-  { name: 'Nelson Souza', image: '/src/images/nelson.avif' },
-  { name: 'Lucas Santos', image: '/src/images/lucas.avif' }
-];
+  const barbeiros = [
+    { name: 'Carlos Silva', image: '/src/images/carlos.avif' },
+    { name: 'Nelson Souza', image: '/src/images/nelson.avif' },
+    { name: 'Lucas Santos', image: '/src/images/lucas.avif' }
+  ];
 
-
-  // Definir horários para dias úteis e sábado
   const horariosSemana = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
   const horariosSabado = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
 
-  // Atualizar horários disponíveis com base no dia selecionado
   const handleDateChange = (e) => {
     const date = new Date(e.target.value);
     setSelectedDate(e.target.value);
@@ -39,6 +35,29 @@ const barbeiros = [
 
   const handleNextStep = () => setStep((prev) => prev + 1);
   const handlePreviousStep = () => setStep((prev) => prev - 1);
+
+  const handleConfirmAppointment = () => {
+    // Dados do agendamento que o usuário selecionou
+    const appointmentData = {
+      userId: 'user123',  // Defina um ID de usuário adequado
+      barberName: selectedBarbeiro,
+      serviceName: 'Corte de Cabelo',  // Aqui você pode adaptar o serviço escolhido
+      scheduledTime: `${selectedDate} ${selectedHorario}`,
+    };
+
+    // Enviar os dados para o backend
+    axios.post('http://localhost:5000/appointments', appointmentData)
+      .then(response => {
+        if (response.data.success) {
+          alert('Agendamento realizado com sucesso!');
+          setStep(1);  // Resetar o processo de agendamento ou redirecionar o usuário
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao realizar o agendamento:', error);
+        alert('Erro ao realizar o agendamento. Tente novamente.');
+      });
+  };
 
   return (
     <div className="agendamento-page">
@@ -136,6 +155,9 @@ const barbeiros = [
           <p>Data: {selectedDate}</p>
           <p>Horário: {selectedHorario}</p>
           <p>Barbeiro: {selectedBarbeiro}</p>
+          <button onClick={handleConfirmAppointment} className="confirm-btn">
+            Confirmar Agendamento
+          </button>
         </div>
       )}
     </div>
@@ -143,3 +165,4 @@ const barbeiros = [
 };
 
 export default Agendamento;
+

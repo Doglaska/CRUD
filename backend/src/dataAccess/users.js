@@ -1,59 +1,55 @@
 import { Mongo } from "../database/mongo.js";
 import { ObjectId } from "mongodb";
-import crypto from 'crypto';
-import { promisify } from 'util';
+import crypto from 'crypto'
 
-const collectionName = 'users';
-const pbkdf2 = promisify(crypto.pbkdf2);
+const collectionName = 'users'
 
 export default class UsersDataAccess {
     async getUsers() {
         const result = await Mongo.db
-            .collection(collectionName)
-            .find({})
-            .toArray();
+        .collectio(collectionName)
+        .findOne({})
+        .toArray()
 
-        return result;
+        return result
     }
 
     async deleteUser(userId) {
         const result = await Mongo.db
-            .collection(collectionName)
-            .findOneAndDelete({ _id: new ObjectId(userId) });
+        .collection(collectionName)
+        .findOneAndDelete({_id: new ObjectId(userId)})
 
-        return result;
+        return result
     }
 
     async updateUser(userId, userData) {
-        if (userData.password) {
-            try {
-                const salt = crypto.randomBytes(16).toString('hex');
-                const hashedPassword = await pbkdf2(userData.password, salt, 310000, 16, 'sha256');
-
-                userData = { ...userData, password: hashedPassword.toString('hex'), salt };
-
+        if(userData.password){
+            const salt = crypto.randomBytes(16)
+            crypto.pbkdf2(userData.password, salt, 310000, 16, 'sha256', async (err, hashedPassword) => {
+                if (error) {
+                    throw new Error('Error during hashing password!')
+                }
+                userData = { ...userData, password: hashedPassword, salt }
+                
                 const result = await Mongo.db
-                    .collection(collectionName)
-                    .findOneAndUpdate(
-                        { _id: new ObjectId(userId) },
-                        { $set: userData },
-                        { returnOriginal: false }
-                    );
-
-                return result;
-            } catch (error) {
-                throw new Error('Error during hashing password!');
-            }
-        } else {
-            const result = await Mongo.db
                 .collection(collectionName)
                 .findOneAndUpdate(
-                    { _id: new ObjectId(userId) },
-                    { $set: userData },
-                    { returnOriginal: false }
-                );
+                    {_id: new ObjectId(userId)},
+                    {$set: userData}
+                )
+        
+                return result
+            })
 
-            return result;
-        }
+        }else{
+        const result = await Mongo.db
+        .collection(collectionName)
+        .findOneAndUpdate(
+            {_id: new ObjectId(userId)},
+            {$set: userData}
+        )
+
+        return result
+    }
     }
 }

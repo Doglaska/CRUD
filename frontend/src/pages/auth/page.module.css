@@ -50,3 +50,9 @@ button[type="submit"] {
     color: #fff;
 }
 
+.authTitle {
+    color: #191919; /* Escolha uma cor que contraste bem com o fundo */
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}

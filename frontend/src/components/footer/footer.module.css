@@ -1,18 +1,15 @@
-/* Estilo principal do rodapé */
-.footerContainer {
-  padding: 2em 0;
-  background-color: #000000;
-  color: #808080;
+.footerContainer, .linksContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 2em 0;
+  background-color: #000000;
+  color: #808080;
   border-top: 1.3px solid white; /* Borda branca */
 }
 
-
-/* Seções do rodapé (Horário e Contato) */
-.footerContent {
+.footerContainer {
   display: flex;
   justify-content: center; /* Centraliza as seções */
   align-items: flex-start; /* Alinha as seções no topo */
@@ -21,7 +18,6 @@
   margin-top: 0.1em;
 }
 
-/* Para que uma seção fique ligeiramente à direita e outra à esquerda */
 .scheduleSection {
   margin-right: 2em; /* Pequeno deslocamento para a direita */
 }

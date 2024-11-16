@@ -1,12 +1,10 @@
 import styles from './footer.module.css'
-import {Link} from 'react-router-dom'
 import { FaMapMarkerAlt, FaFacebookSquare, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
     return (
       <footer className={styles.footerContainer}>
     
-  
         {/* Conteúdo do rodapé */}
         <div className={styles.footerContent}>
           {/* Seção de Horário de Funcionamento */}

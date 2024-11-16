@@ -10,12 +10,6 @@ productsRouter.get('/', async (req, res) => {
     res.status(statusCode).send({success, statusCode, body})
 })
 
-productsRouter.get('/availables', async (req, res) => {
-    const { success, statusCode, body } = await productsControllers.getAvailableProducts()
-
-    res.status(statusCode).send({success, statusCode, body})
-})
-
 productsRouter.post('/', async (req, res) => {
     const { success, statusCode, body } = await productsControllers.addProduct(req.body)
 
@@ -30,6 +24,12 @@ productsRouter.delete('/:id', async (req, res) => {
 
 productsRouter.put('/:id', async (req, res) => {
     const { success, statusCode, body } = await productsControllers.updateProduct(req.params.id, req.body)
+
+    res.status(statusCode).send({success, statusCode, body})
+})
+
+productsRouter.get('/availables', async (req, res) => {
+    const { success, statusCode, body } = await productsControllers.getAvailableProducts()
 
     res.status(statusCode).send({success, statusCode, body})
 })

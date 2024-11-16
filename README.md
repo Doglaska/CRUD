@@ -2,6 +2,8 @@
 // Instalar as dependencias do npm em cada diretório. (abra dois terminais) cd frontend e cd backend
 <strong>npm install</strong>
 <strong>npm install -g nodemon</strong>
+npm install axios
+
 
 // Extensão
 <strong>thunder client</strong>

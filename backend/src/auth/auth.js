@@ -8,8 +8,6 @@ import { ObjectId } from 'mongodb'
 
 const collectionName = 'users'
 
-const authRouter = express.Router()
-
 passport.use(new LocalStrategy({usernamerField: 'email'}, async (email, password, callback) =>{
     const user = await Mongo.db
     .collection(collectionName)
@@ -21,8 +19,8 @@ passport.use(new LocalStrategy({usernamerField: 'email'}, async (email, password
 
     const saltBuffer = user.salt.buffer
 
-    crypto.pbkdf2(password, saltBuffer, 310000, 16, 'sha256', (error, hashedPassword) =>{
-        if(error){
+    crypto.pbkdf2(password, saltBuffer, 310000, 16, 'sha256', (err, hashedPassword) =>{
+        if(err){
             return callback(null, false)
         }
 
@@ -38,56 +36,64 @@ passport.use(new LocalStrategy({usernamerField: 'email'}, async (email, password
     })
 }))
 
-authRouter.post('/signup', async (req, res) => {
-    const { fullname, email, password, role } = req.body;
+const authRouter = express.Router()
 
-    // Verifique se o usuário já existe
-    const checkUser = await Mongo.db.collection(collectionName).findOne({ email });
+authRouter.post('/signup', async (req, res) =>{
+    const checkUser = await Mongo.db
+    .collection(collectionName)
+    .findOne({email: req.body.email})
+
     if (checkUser) {
         return res.status(500).send({
             success: false,
             statusCode: 500,
-            body: { text: 'User already exists!' }
-        });
+            body: {
+                text: 'User already exists!'
+            }
+        })
     }
 
-    // Gera o salt e o hash da senha
-    const salt = crypto.randomBytes(16);
-    crypto.pbkdf2(password, salt, 310000, 16, 'sha256', async (error, hashedPassword) => {
-        if (error) {
+    const salt = crypto.randomBytes(16)
+    crypto.pbkdf2(req.body.password, salt, 310000, 16, 'sha256', async (err, hashedPassword) => {
+        if (err) {
             return res.status(500).send({
                 success: false,
                 statusCode: 500,
-                body: { text: 'Error on crypto password!' }
-            });
+                body: {
+                    text: 'Error on crypto password!',
+                    err: err
+                }
+            })
         }
-
-        // Insira o usuário no banco com a role especificada
-        const result = await Mongo.db.collection(collectionName).insertOne({
-            fullname,
-            email,
+        
+        const result = await Mongo.db
+        .collection(collectionName)
+        .insertOne({
+            email: req.body.email,
             password: hashedPassword,
-            salt,
-            role: role || 'usuario' // Define 'usuario' como o padrão se nenhum role for especificado
-        });
+            salt
+        })
 
-        if (result.insertedId) {
-            const user = await Mongo.db.collection(collectionName).findOne({ _id: new ObjectId(result.insertedId) }, { projection: { password: 0, salt: 0 } });
-            const token = jwt.sign({ id: user._id, role: user.role }, 'secret'); // Inclui a role no token
+        if(result.insertedId){
+            const user = await Mongo.db
+            .collection(collectionName)
+            .findOne({_id: new ObjectId(result.insertedId)})
+
+            const token = jwt.sign(user, 'secret')
 
             return res.send({
                 success: true,
                 statusCode: 200,
                 body: {
-                    text: 'User registered correctly!',
+                    text: 'User registred correctly!',
                     token,
-                    user
+                    user,
+                    logged: true
                 }
-            });
+            })
         }
-    });
-});
-
+    })
+})
 
 authRouter.post('/login', (req, res) => {
     passport.authenticate('local', (error, user) => {
