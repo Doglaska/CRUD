@@ -29,7 +29,7 @@ html, body {
 .parallaxBanner {
   width: 100vw;
   height: 480px; /* ajuste conforme necessário */
-  background-image: url('/src/images/banner.jpg'); /* caminho ajustado */
+  background-image: url('/images/banner.jpg'); /* caminho ajustado */
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Efeito Parallax */
@@ -40,8 +40,6 @@ html, body {
   
 }
 
-
-
 /* Estilos do Carrossel */
 .carouselContainer {
   display: flex;
@@ -49,17 +47,22 @@ html, body {
   justify-content: center;
   position: relative;
   width: 100%;
-  max-width: none;
+  max-width: 1200px; /* Define um limite máximo */
+  margin: 0 auto;
+  overflow: hidden; /* Garante que nada ultrapasse o container */
 }
 
 .carouselSlide {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .imageTextContainer {
+  position: relative;
   display: flex;
   justify-content: space-between; /* Garante o espaçamento entre a imagem e o texto */
   align-items: center;
@@ -67,7 +70,7 @@ html, body {
 }
 
 .carouselImage {
-  width: 780px; /* A imagem ocupa 70% da largura do carrossel */
+  width: 700px; /* A imagem ocupa 70% da largura do carrossel */
   height: 500px;
   border-radius: 8px;
 }
@@ -111,36 +114,66 @@ html, body {
 }
 
 /* Botões de Navegação (Voltar/Avançar) */
-.carouselButtonLeft {
-  position: flex;
-  left: 60%;
-  top: 50%;
+.carouselButtonLeft, .carouselButtonRight {
+  position: absolute; /* Botões absolutamente posicionados */
+  top: 50%; /* Centraliza verticalmente */
   transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+.carouselButtonLeft {
+  left: 10px; /* Sempre na extrema esquerda */
 }
 
 .carouselButtonRight {
-  position: flex;
-  right: 60%;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 10px; /* Sempre na extrema direita */
+}
+
+.carouselButtonLeft:hover,
+.carouselButtonRight:hover {
+  color: #ff4500; /* Cor diferente ao passar o mouse */
 }
 
 /* Responsividade */
-@media screen and (max-width: 700px) {
-  .carouselContainer {
-    flex-direction: column;
-  }
-  .carouselImage, .carouselText {
-    width: 100%;
-  }
+
+/* Responsividade: Tela menor que 1125px */
+@media screen and (max-width: 1125px) {
   .carouselText {
-    padding: 15px;
+    position: absolute;
+    top: 20px; /* Texto na parte superior */
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6); /* Mantém fundo semi-transparente */
+    padding: 1em;
+    font-size: 1em;
   }
-  .carouselButton {
-    font-size: 1.5em;
-    padding: 0.5em;
+
+  .carouselImage {
+    max-height: 400px; /* Ajusta o tamanho da imagem para telas menores */
   }
 }
+
+/* Responsividade adicional para telas muito pequenas */
+@media screen and (max-width: 800px) {
+  .carouselImage {
+    max-height: 300px; /* Ajuste adicional do tamanho da imagem */
+  }
+
+  .carouselButton {
+    font-size: 1.5rem; /* Botões menores, mas ainda visíveis */
+  }
+
+  .carouselText {
+    font-size: 0.9em; /* Texto um pouco menor */
+    padding: 0.8em;
+  }
+}
+
 .servicesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 colunas */
@@ -189,4 +222,19 @@ html, body {
 .serviceText p {
   font-size: 0.7em;
   margin-top: 5px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 1000px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    gap: 1em; /* Reduz o espaço para telas menores */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .servicesGrid {
+    grid-template-columns: 1fr; /* 1 coluna */
+    gap: 1em;
+  }
 }

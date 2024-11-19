@@ -1,53 +1,63 @@
-.footerContainer, .linksContainer {
+/* Contêiner do Footer */
+.footerContainer {
+  display: flex;
+  justify-content: center; /* Centraliza as seções horizontalmente */
+  align-items: center; /* Centraliza as seções verticalmente */
+  padding: 2em 0;
+  background-color: #000000;
+  color: #808080;
+  border-top: 1.3px solid white;
+  width: 100%; /* Ocupa 100% da largura da tela */
+  position: relative; /* Para controlar o posicionamento de elementos dentro do footer */
+  flex-wrap: wrap; /* Permite que os itens se ajustem em múltiplas linhas se necessário */
+}
+
+.linksContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2em 0;
-  background-color: #000000;
-  color: #808080;
-  border-top: 1.3px solid white; /* Borda branca */
+  gap: 1em; /* Ajuste o espaçamento entre os links */
 }
 
-.footerContainer {
+/* Seções de Horário e Contato */
+.scheduleSection, .contactSection {
   display: flex;
-  justify-content: center; /* Centraliza as seções */
-  align-items: flex-start; /* Alinha as seções no topo */
-  width: 80%; /* Controla a largura do conteúdo */
-  gap: 2em; /* Espaço entre as seções */
-  margin-top: 0.1em;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo dentro da seção */
+  justify-content: center;
+  text-align: center; /* Alinha o texto no centro */
 }
 
 .scheduleSection {
-  margin-right: 2em; /* Pequeno deslocamento para a direita */
+  margin-right: 2em; /* Ajuste para a margem à direita */
 }
 
 .contactSection {
-  margin-left: 2em; /* Pequeno deslocamento para a esquerda */
+  margin-left: 2em; /* Ajuste para a margem à esquerda */
 }
 
 /* Título das seções (Horário e Contato) */
 h2 {
   color: #ffffff;
   text-align: center;
-  margin-bottom: 1em; /* Espaço entre o título e os tópicos */
-  font-size: 1.2em; /* Tamanho ajustado */
+  margin-bottom: 1em;
+  font-size: 1.2em;
 }
 
-/* Lista de itens, para Horário e Contato */
+/* Lista de itens de Horário e Contato */
 .scheduleList, .contactList {
   margin: 0;
   padding: 0;
-  list-style-type: none; /* Remove marcadores da lista */
-  text-align: left; /* Alinhamento à esquerda */
-  font-size: 1em; /* Tamanho da fonte */
+  list-style-type: none;
+  font-size: 1em;
 }
 
 .scheduleList li, .contactList li {
-  margin-bottom: 10px; /* Espaçamento entre os itens */
+  margin-bottom: 10px; /* Espaço entre os itens */
 }
 
 /* Destaque para os itens de lista */
 .scheduleList li strong, .contactList li strong {
-  color: #808080; /* Cor para destacar o texto em negrito */
+  color: #808080;
 }

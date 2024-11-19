@@ -1,47 +1,45 @@
-import express from 'express'
-import passport from 'passport'
-import LocalStrategy from 'passport-local'
-import crypto from 'crypto'
-import { Mongo } from '../database/mongo.js'
-import jwt from 'jsonwebtoken'
-import { ObjectId } from 'mongodb'
+import express from 'express';
+import passport from 'passport';
+import LocalStrategy from 'passport-local';
+import crypto from 'crypto';
+import { Mongo } from '../database/mongo.js'; // Importando a conexão
+import jwt from 'jsonwebtoken';
+import { ObjectId } from 'mongodb';
 
-const collectionName = 'users'
+const collectionName = 'users';
 
-passport.use(new LocalStrategy({usernamerField: 'email'}, async (email, password, callback) =>{
-    const user = await Mongo.db
-    .collection(collectionName)
-    .findOne({email: email})
+passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, callback) => {
+    const db = Mongo.getDb(); // Acessando o DB usando o método getDb()
+    const user = await db.collection(collectionName).findOne({ email: email });
 
-    if(!user){
-        return callback(null, false)
+    if (!user) {
+        return callback(null, false);
     }
 
-    const saltBuffer = user.salt.buffer
+    const saltBuffer = user.salt.buffer;
 
-    crypto.pbkdf2(password, saltBuffer, 310000, 16, 'sha256', (err, hashedPassword) =>{
-        if(err){
-            return callback(null, false)
+    crypto.pbkdf2(password, saltBuffer, 310000, 16, 'sha256', (err, hashedPassword) => {
+        if (err) {
+            return callback(null, false);
         }
 
-        const userPasswordBuffer = Buffer.from(user.password.buffer)
+        const userPasswordBuffer = Buffer.from(user.password.buffer);
 
-        if(!crypto.timingSafeEqual(userPasswordBuffer, hashedPassword)){
-            return callback(null, false)
+        if (!crypto.timingSafeEqual(userPasswordBuffer, hashedPassword)) {
+            return callback(null, false);
         }
 
-        const { password, salt, ...rest} = user
+        const { password, salt, ...rest } = user;
 
-        return callback(null, rest)
-    })
-}))
+        return callback(null, rest);
+    });
+}));
 
-const authRouter = express.Router()
+const authRouter = express.Router();
 
-authRouter.post('/signup', async (req, res) =>{
-    const checkUser = await Mongo.db
-    .collection(collectionName)
-    .findOne({email: req.body.email})
+authRouter.post('/signup', async (req, res) => {
+    const db = Mongo.getDb(); // Acessando o DB
+    const checkUser = await db.collection(collectionName).findOne({ email: req.body.email });
 
     if (checkUser) {
         return res.status(500).send({
@@ -50,10 +48,10 @@ authRouter.post('/signup', async (req, res) =>{
             body: {
                 text: 'User already exists!'
             }
-        })
+        });
     }
 
-    const salt = crypto.randomBytes(16)
+    const salt = crypto.randomBytes(16);
     crypto.pbkdf2(req.body.password, salt, 310000, 16, 'sha256', async (err, hashedPassword) => {
         if (err) {
             return res.status(500).send({
@@ -63,41 +61,37 @@ authRouter.post('/signup', async (req, res) =>{
                     text: 'Error on crypto password!',
                     err: err
                 }
-            })
+            });
         }
-        
-        const result = await Mongo.db
-        .collection(collectionName)
-        .insertOne({
+
+        const result = await db.collection(collectionName).insertOne({
             email: req.body.email,
             password: hashedPassword,
             salt
-        })
+        });
 
-        if(result.insertedId){
-            const user = await Mongo.db
-            .collection(collectionName)
-            .findOne({_id: new ObjectId(result.insertedId)})
+        if (result.insertedId) {
+            const user = await db.collection(collectionName).findOne({ _id: new ObjectId(result.insertedId) });
 
-            const token = jwt.sign(user, 'secret')
+            const token = jwt.sign(user, 'secret');
 
             return res.send({
                 success: true,
                 statusCode: 200,
                 body: {
-                    text: 'User registred correctly!',
+                    text: 'User registered correctly!',
                     token,
                     user,
                     logged: true
                 }
-            })
+            });
         }
-    })
-})
+    });
+});
 
 authRouter.post('/login', (req, res) => {
     passport.authenticate('local', (error, user) => {
-        if(error) {
+        if (error) {
             return res.status(500).send({
                 success: false,
                 statusCode: 500,
@@ -105,20 +99,20 @@ authRouter.post('/login', (req, res) => {
                     text: 'Error during authentication!',
                     error
                 }
-            })
+            });
         }
 
-        if(!user) {
+        if (!user) {
             return res.status(400).send({
                 success: false,
                 statusCode: 400,
                 body: {
                     text: 'Credentials are not correct!',
                 }
-            })
+            });
         }
 
-        const token = jwt.sign(user, 'secret')
+        const token = jwt.sign(user, 'secret');
         return res.status(200).send({
             success: true,
             statusCode: 200,
@@ -127,8 +121,8 @@ authRouter.post('/login', (req, res) => {
                 user,
                 token
             }
-        })
-    })(req, res)
-})
+        });
+    })(req, res);
+});
 
-export default authRouter
+export default authRouter;

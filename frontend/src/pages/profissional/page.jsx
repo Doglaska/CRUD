@@ -4,9 +4,9 @@ import styles from './page.module.css';
 
 // Dados dos profissionais
 const profissionais = [
-  { img: '/src/images/carlos.avif', name: 'Carlos Silva', role: 'Especialista em Cortes Clássicos' },
-  { img: '/src/images/nelson.avif', name: 'Nelson Souza', role: 'Especialista em Barba e Bigode' },
-  { img: '/src/images/lucas.avif', name: 'Lucas Santos', role: 'Expert em Tratamentos Capilares' },
+  { img: '/images/carlos.avif', name: 'Carlos Silva', role: 'Especialista em Cortes Clássicos' },
+  { img: '/images/nelson.avif', name: 'Nelson Souza', role: 'Especialista em Barba e Bigode' },
+  { img: '/images/lucas.avif', name: 'Lucas Santos', role: 'Expert em Tratamentos Capilares' },
 ];
 
 export default function Profissionais() {

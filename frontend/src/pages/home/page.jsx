@@ -4,25 +4,25 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './page.module.css';
 
 const services = [
-  { img: '/src/images/corte.webp', title: 'Corte de Cabelo', text: 'Experimente nosso corte personalizado.' },
-  { img: '/src/images/barba.webp', title: 'Barba', text: 'O tratamento que sua barba merece, feito com navalha e produtos que hidratam os pelos do rosto.' },
-  { img: '/src/images/maquina.webp', title: 'Maquina', text: 'Cortes apenas com a máquina de cabelo, neste serviço o uso de pentes varia conforme o serviço realizado.' },
-  { img: '/src/images/escova.webp', title: 'Escova progressiva', text: 'A escova progressiva é um procedimento químico que alisa os cabelos gradativamente.' },
-  { img: '/src/images/depilacao.webp', title: 'Depilação com Cera', text: 'A depilação com cera tem vantagem de ser rápida e eficaz, tem como objetivo tirar os pelos os pelos do corpo na raiz.' },
-  { img: '/src/images/acabamento.webp', title: 'Acabamentos', text: 'O serviço de acabamento do cabelo é mais importante para seu visual final do que você imagina..' }
+  { img: '/images/corte.webp', title: 'Corte de Cabelo', text: 'Experimente nosso corte personalizado.' },
+  { img: '/images/barba.webp', title: 'Barba', text: 'O tratamento que sua barba merece, feito com navalha e produtos que hidratam os pelos do rosto.' },
+  { img: '/images/maquina.webp', title: 'Maquina', text: 'Cortes apenas com a máquina de cabelo, neste serviço o uso de pentes varia conforme o serviço realizado.' },
+  { img: '/images/escova.webp', title: 'Escova progressiva', text: 'A escova progressiva é um procedimento químico que alisa os cabelos gradativamente.' },
+  { img: '/images/depilacao.webp', title: 'Depilação com Cera', text: 'A depilação com cera tem vantagem de ser rápida e eficaz, tem como objetivo tirar os pelos os pelos do corpo na raiz.' },
+  { img: '/images/acabamento.webp', title: 'Acabamentos', text: 'O serviço de acabamento do cabelo é mais importante para seu visual final do que você imagina..' }
 ];
 
 const images = [
   {
-    src: '/src/images/cadeira.webp',
+    src: '/images/cadeira.webp',
     text: 'Bem-vindo ao Bizumic Barber! Transforme seu estilo aqui.',
   },
   {
-    src: '/src/images/equipe.jfif',
+    src: '/images/equipe.jfif',
     text: 'Conheça os nossos profissionais.',
   },
   {
-    src: '/src/images/cabelo.jpg',
+    src: '/images/cabelo.jpg',
     text: 'Uma das maiores referências do mercado, oferecemos mais do que cortes de cabelo, oferecemos experiência.',
   },
 ];

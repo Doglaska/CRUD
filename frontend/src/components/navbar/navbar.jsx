@@ -31,7 +31,6 @@ export default function Navbar(){
                     <img className= {styles.logoBranco} src="/images/logoBranco.png" alt="" />
                 </Link>
                 <div className= {styles.mobileNavbarBtns}>
-                    <LuShoppingCart className= {styles.navbarLink}/>
                     <LuMenu className= {styles.navbarLink} onClick={handleOpenMenu}/>
                 </div>
             </div>

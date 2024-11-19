@@ -9,9 +9,9 @@ const Agendamento = () => {
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
 
   const barbeiros = [
-    { name: 'Carlos Silva', image: '/src/images/carlos.avif' },
-    { name: 'Nelson Souza', image: '/src/images/nelson.avif' },
-    { name: 'Lucas Santos', image: '/src/images/lucas.avif' }
+    { name: 'Carlos Silva', image: '/images/carlos.avif' },
+    { name: 'Nelson Souza', image: '/images/nelson.avif' },
+    { name: 'Lucas Santos', image: '/images/lucas.avif' }
   ];
 
   const horariosSemana = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];

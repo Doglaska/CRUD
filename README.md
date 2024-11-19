@@ -33,3 +33,12 @@ PUT\t <strong>http://localhost:3000/users</strong>/id-user<br>
 Delete<br>
 DELETE\t <strong>http://localhost:3000/users</strong>/id-user<br>
 
+// script para inserir o adm pelo playground 
+db.users.insertOne({
+    fullname: "Administrador",
+    email: "admin@email.com",
+    password: new BinData(0, "X3LzZ3aV0H8cvbIiXmHL6g=="), // Criptografada
+    salt: new BinData(0, "tFITrP0GLhXhPN7dbGpiHQ=="),  // Criptografada
+    role: "admin"
+  });
+  
