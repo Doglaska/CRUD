@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-export default function authServices(){
+export default function authServices() {
     const [authLoading, setAuthLoading] = useState(false)
 
     const url = 'http://localhost:3000/auth'
 
     const login = (formData) => {
         setAuthLoading(true)
-
+        
         fetch(`${url}/login`, {
             method: 'POST',
             headers: {
@@ -21,7 +21,7 @@ export default function authServices(){
             if(result.success && result.body.token) {
                 localStorage.setItem(
                     'auth',
-                    JSON.stringify({token: result.body.token, user: result.body.user})
+                    JSON.stringify({ token: result.body.token, user: result.body.user })
                 )
             }
         })
@@ -39,7 +39,7 @@ export default function authServices(){
 
     const signup = (formData) => {
         setAuthLoading(true)
-
+        
         fetch(`${url}/signup`, {
             method: 'POST',
             headers: {
@@ -53,7 +53,7 @@ export default function authServices(){
             if(result.success && result.body.token) {
                 localStorage.setItem(
                     'auth',
-                    JSON.stringify({token: result.body.token, user: result.body.user})
+                    JSON.stringify({ token: result.body.token, user: result.body.user })
                 )
             }
         })
@@ -65,5 +65,5 @@ export default function authServices(){
         })
     }
 
-    return{login, logout, signup, authLoading}
+    return { signup, login, logout, authLoading }
 }
